@@ -17,9 +17,6 @@
 - к.э.н., доцент Панов М.А.
 - ст. преп., Фадеев В.О.
 
-[![N|Solid](https://cldup.com/dTxpPi9lDf.thumb.png)](https://nodesource.com/products/nsolid)
-
-[![Build Status](https://travis-ci.org/joemccann/dillinger.svg?branch=master)](https://travis-ci.org/joemccann/dillinger)
 
 Структура отчета
 
@@ -38,88 +35,49 @@
 Ознакомиться с основными функциями Unity и взаимодействием с объектами внутри редактора.
 
 ## Задание 1
-### Пошагово выполнить каждый пункт раздела "ход работы" с описанием и примерами реализации задач
+### В разделе «ход работы» пошагово выполнить каждый пункт с описанием и примера реализации задач по теме видео «Практическая работа 1-4».
 Ход работы:
-- Произвести подготовку данных для работы с алгоритмом линейной регрессии. 10 видов данных были установлены случайным образом, и данные находились в линейной зависимости. Данные преобразуются в формат массива, чтобы их можно было вычислить напрямую при использовании умножения и сложения.
-
-```py
-
-In [ ]:
-#Import the required modules, numpy for calculation, and Matplotlib for drawing
-import numpy as np
-import matplotlib.pyplot as plt
-#This code is for jupyter Notebook only
-%matplotlib inline
-
-# define data, and change list to array
-x = [3,21,22,34,54,34,55,67,89,99]
-x = np.array(x)
-y = [2,22,24,65,79,82,55,130,150,199]
-y = np.array(y)
-
-#Show the effect of a scatter plot
-plt.scatter(x,y)
-
+1. Был создан новый проект 3D-Core под названием GameServices, в дальнейшем вся работа будет проходить в этом проекте
+2. В дальнейшем в качестве редактора кода был указан VSCode. [pic 1](https://drive.google.com/file/d/14WnskIyDgGCBZCJIN7sxEGTqSo85K3uU/view?usp=sharing)
+3. С помощью меню GameObject -> 3D Object был создан объект Plane
+4. С помощью меню GameObject -> 3D Object был создан объект Cube
+5. С помощью меню GameObject -> 3D Object был создан объект Sphere [pic 2 пункты 3-5](https://drive.google.com/file/d/1NId8BSxX67R8x984uoGO-HU-BS2soP7d/view?usp=sharing)
+6. В объекте Sphere коллайдер включён по умолчанию, его границы соответствуют границам объекта
+7. В Inspector компонента коллайдера отмечен галочкой параметр Is Trigger [pic 3](https://drive.google.com/file/d/1suiYb3clYUGOX7MYqwOU7KanWS_pxrt0/view?usp=sharing)
+8. В контекстном меню вкладки Assets по пути Create -> Material был создан материал Red_Color. Перетащив материал на объект Cube последний окрасился в красный цвет. [pic 4](https://drive.google.com/file/d/1kaSXNrKRx7z5n_vF6zVE-6vTm8PY7oOQ/view?usp=sharing)
+9. С помощью кнопки Add Component в объект Cube был добавлен компонент Rigidbody, делающий из игрового объекта физическое тело. Пока в компоненте не включен параметр Use Gravity, объект будет являться статичным, т.е не будет проваливаться под плоскость. [pic 5](https://drive.google.com/file/d/1IW48L7jIRSWVtdibaAAunu0FJ2NZLF2t/view?usp=sharing)
+10. С помощью кнопки Add Component -> New Script в объект Sphere был добавлен скрипт CheckCollider со следующей функцией:
+```csharp
+   private void OnTriggerEnter(Collider other) {
+        Debug.Log("Произошло столкновение с" + other.gameObject.name);
+    }
 ```
+Функция проверяет, было ли пересечение объекта с другим, и указывает это в консоли с названием объекта, с которым было пересечение. [pic 6](https://drive.google.com/file/d/1TkrGM93zCbgRvGa_Z8ukv-87ouX3iYld/view?usp=sharing)
+11. Для этой задачи скрипт был модифицирован:
+```csharp
+private void OnTriggerEnter(Collider other) {
+        Debug.Log("Произошло столкновение с " + other.gameObject.name);
+        other.GetComponent<Renderer>().material.SetColor("_Color", Color.green);
+    }
+    
+    private void OnTriggerExit(Collider other) {
+        Debug.Log("Завершено столкновение с " + other.gameObject.name);
+        other.GetComponent<Renderer>().material.SetColor("_Color", Color.red);
+    }
+```
+При столкновении скрипт получает объект материала и устанавливает соответствующее значение цвета. [pic 7](https://drive.google.com/file/d/1Wdn4IqLU_I2BkrAbmgNWSMiT5msZvsiy/view?usp=sharing) [pic 8](https://drive.google.com/file/d/1HL-6SQRZULvYDV8-oy6Xt9fS0Jap31Dn/view?usp=sharing)
 
-- Определите связанные функции. Функция модели: определяет модель линейной регрессии wx+b. Функция потерь: функция потерь среднеквадратичной ошибки. Функция оптимизации: метод градиентного спуска для нахождения частных производных w и b.
 
 
 ## Задание 2
-### Должна ли величина loss стремиться к нулю при изменении исходных данных? Ответьте на вопрос, приведите пример выполнения кода, который подтверждает ваш ответ.
-
-- Перечисленные в этом туториале действия могут быть выполнены запуском на исполнение скрипт-файла, доступного [в репозитории](https://github.com/Den1sovDm1triy/hfss-scripting/blob/main/ScreatingSphereInAEDT.py).
-- Для запуска скрипт-файла откройте Ansys Electronics Desktop. Перейдите во вкладку [Automation] - [Run Script] - [Выберите файл с именем ScreatingSphereInAEDT.py из репозитория].
-
-```py
-
-import ScriptEnv
-ScriptEnv.Initialize("Ansoft.ElectronicsDesktop")
-oDesktop.RestoreWindow()
-oProject = oDesktop.NewProject()
-oProject.Rename("C:/Users/denisov.dv/Documents/Ansoft/SphereDIffraction.aedt", True)
-oProject.InsertDesign("HFSS", "HFSSDesign1", "HFSS Terminal Network", "")
-oDesign = oProject.SetActiveDesign("HFSSDesign1")
-oEditor = oDesign.SetActiveEditor("3D Modeler")
-oEditor.CreateSphere(
-	[
-		"NAME:SphereParameters",
-		"XCenter:="		, "0mm",
-		"YCenter:="		, "0mm",
-		"ZCenter:="		, "0mm",
-		"Radius:="		, "1.0770329614269mm"
-	], 
-)
-
-```
+### 
 
 ## Задание 3
-### Какова роль параметра Lr? Ответьте на вопрос, приведите пример выполнения кода, который подтверждает ваш ответ. В качестве эксперимента можете изменить значение параметра.
-
-- Перечисленные в этом туториале действия могут быть выполнены запуском на исполнение скрипт-файла, доступного [в репозитории](https://github.com/Den1sovDm1triy/hfss-scripting/blob/main/ScreatingSphereInAEDT.py).
-- Для запуска скрипт-файла откройте Ansys Electronics Desktop. Перейдите во вкладку [Automation] - [Run Script] - [Выберите файл с именем ScreatingSphereInAEDT.py из репозитория].
-
-```py
-
-import ScriptEnv
-ScriptEnv.Initialize("Ansoft.ElectronicsDesktop")
-oDesktop.RestoreWindow()
-oProject = oDesktop.NewProject()
-oProject.Rename("C:/Users/denisov.dv/Documents/Ansoft/SphereDIffraction.aedt", True)
-oProject.InsertDesign("HFSS", "HFSSDesign1", "HFSS Terminal Network", "")
-oDesign = oProject.SetActiveDesign("HFSSDesign1")
-oEditor = oDesign.SetActiveEditor("3D Modeler")
-oEditor.CreateSphere(
-	[
-		"NAME:SphereParameters",
-		"XCenter:="		, "0mm",
-		"YCenter:="		, "0mm",
-		"ZCenter:="		, "0mm",
-		"Radius:="		, "1.0770329614269mm"
-	], 
-)
+### 
 
 ```
+
+
 
 ## Выводы
 

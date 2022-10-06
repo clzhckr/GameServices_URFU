@@ -66,7 +66,7 @@ YaGames
     });
 ```
 1. После этого я запустил на локальной машине собранный проект, и открыл консоль веб-страницы, чтобы удостовериться в подключении.
-[!](https://github.com/clzhckr/GameServices_URFU/blob/main/Lab2/Media/ConsoleLog.png)
+![](https://github.com/clzhckr/GameServices_URFU/blob/main/Lab2/Media/ConsoleLog.png)
 
 
 

@@ -88,8 +88,8 @@ public class PlayerController : MonoBehaviour
 + Cчётчик высоты, на которой находится персонаж (при достижении 10000 метров игра заканчивается, и появляется экран благодарности за игру)
 + Кнопка паузы, которая активирует соответствующий экран, из которого можно продолжить игру, начать её заново или выйти в главное меню.
 + Всплывающий текст при достижении определённой высоты, работает как при падении, так и при наборе высоты.  
-[!](https://github.com/clzhckr/GameServices_URFU/blob/main/Lab3/Media/OverviewUI.png)
-[!](https://github.com/clzhckr/GameServices_URFU/blob/main/Lab3/Media/PauseUI.png)
+![](https://github.com/clzhckr/GameServices_URFU/blob/main/Lab3/Media/OverviewUI.png)
+![](https://github.com/clzhckr/GameServices_URFU/blob/main/Lab3/Media/PauseUI.png)
 ## Задание 2
 ### Используя видео-материалы практических работ повторить реализацию игровых механик
 + Уменьшение жизни. Добавление текстур
@@ -117,7 +117,7 @@ public class PlayerController : MonoBehaviour
         }
   ```
 1. В соответствии с рекомендациями из видео я отредактировал структуру папок в проекте: 
-[!]()
+![]()
 ## Задание 3
 ### Используя видео-материалы практических работ интегрировать игровой сервис в готовое приложение
 2. На [просторах интернета](https://t.me/yandexgame_plugin/5901) я нашёл плагин, используемый в видео, затем я добавил его в проект drag-n-drop'ом. В файлах проекта появилась отдельная папка YandexGame.

@@ -124,7 +124,7 @@ namespace YG
         YandexGame.SaveProgress(); //сохранение изменений
 }
 ```
-![](Overview)
+![](https://github.com/clzhckr/GameServices_URFU/blob/main/Lab5/Media/Overview.png)
 
 ## Задание 2
 ### Описать не менее трех дополнительных функций Яндекс SDK, которые могут быть интегрированы в игру. 
